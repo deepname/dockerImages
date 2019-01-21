@@ -3,15 +3,11 @@ FROM debian:9
 MAINTAINER Ivan Gomez "ivangomezlapenya@gmail.com"
 
 # Update Ubuntu Software repository
-RUN apt-get update
-RUN apt-get -y upgrade
 
-#RUN apt-get install -y curl
-
-#RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-
-RUN apt-get install -y nodejs
-#RUN apt-get install -y npm
-#RUN apt-get install -y nvm
+RUN apt-get update -yq \
+  && apt-get upgrade -yq \
+  && apt-get install curl gnupg -yq \
+  && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+  && apt-get install nodejs -yq
 
 WORKDIR /home
